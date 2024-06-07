@@ -40,15 +40,19 @@ function Home() {
   }
 
   useEffect(() => {
-    let notes = localStorage.getItem("pocketNotes");
-    console.log("setting new Notes");
-    setAllNotes(JSON.parse(notes));
+    let localNotes = localStorage.getItem("pocketNotes");
+    if (localNotes != null) {
+      setAllNotes(JSON.parse(localNotes));
+    } else {
+      setAllNotes(notes);
+    }
   }, []);
 
   useEffect(() => {
-    let notes = JSON.stringify(allNotes);
-    console.log("setting notes in localStorage");
-    localStorage.setItem("pocketNotes", notes);
+    if (allNotes != null) {
+      let notes = JSON.stringify(allNotes);
+      localStorage.setItem("pocketNotes", notes);
+    }
   });
 
   if (allNotes == null) {
