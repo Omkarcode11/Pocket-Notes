@@ -1,24 +1,44 @@
-import React, { useRef } from 'react'
-import Profile from './Profile'
-import Modal from './Modal'
+import React, { useRef, useState } from "react";
+import Profile from "./Profile";
+import Modal from "./Modal";
 
-function LeftSection({setSelected,select,notes,addNewGroup}) {
-    let modal = useRef()
+function LeftSection({ setSelected, select, notes, addNewGroup }) {
+  let [modal, setModal] = useState(false);
 
-    function createGroupHandler(){
-        modal.current.show()
-    }
+  function openModal() {
+    setModal(true);
+  }
 
+  function closeModal() {
+    setModal(false);
+  }
+
+  function createGroupHandler() {
+    openModal();
+  }
 
   return (
-    <div className='col-span-1 p-5 pr-0'>
-        <h1 className='text-3xl font-semibold my-4'>Pocket Notes</h1>
-        <button className='bg-black rounded-xl text-white py-2 ml-2 px-4 my-4' onClick={createGroupHandler}>+ Create Notes Group</button>
-        <Modal addNewGroup={addNewGroup} ref={modal}/>
-        {notes.map((ele)=><Profile select={select} key={ele.id} name={ele.groupName} id={ele.id} color={ele.color} setSelected={setSelected} notes={notes}/>)}
-
-    </div>
-  )
+    <>
+      <h1 className='text-3xl font-semibold my-4'>Pocket Notes</h1>
+      <button
+        className='bg-black rounded-xl sm:w-11/12 text-white py-2 ml-2 px-4 my-4 text-2xl'
+        onClick={createGroupHandler}>
+        + Create Notes Group
+      </button>
+      {modal && <Modal show={modal} addNewGroup={addNewGroup} close={closeModal} />}
+      {notes.map((ele) => (
+        <Profile
+          select={select}
+          key={ele.id}
+          name={ele.groupName}
+          id={ele.id}
+          color={ele.color}
+          setSelected={setSelected}
+          notes={notes}
+        />
+      ))}
+    </>
+  );
 }
 
-export default LeftSection
+export default LeftSection;

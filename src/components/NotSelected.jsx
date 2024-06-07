@@ -6,9 +6,9 @@ function NotSelected() {
   return (
     <div className='bg-[#F7ECDC] h-full flex flex-col items-center justify-between pt-12'>
      <div></div>
-     <div className='text-center'>
-        <img src={Note} alt='note' className='text-center'/>
-     <h1 className='text-3xl font-semibold text-center'>
+     <div className='flex justify-center items-center flex-col gap-4 text-center'>
+        <img src={Note} alt='note' className='text-center w-3/4'/>
+     <h1 className='text-6xl font-semibold text-center'>
         Pocket Notes
      </h1>
      <p >

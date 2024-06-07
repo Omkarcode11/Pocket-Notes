@@ -3,9 +3,9 @@ import Note from './Note'
 
 function AllNotes({notes}) {
   return (
-    <div className='bg-[#F7ECDC] h-[80vh] p-6'>
-       {notes.map((ele)=>
-        <Note time={ele.time} note={ele.note}/> 
+    <div className='bg-[#F7ECDC] h-[67vh] p-8 overflow-auto'>
+       {notes.map((ele,i)=>
+        <Note key={i} time={ele.time} note={ele.note}/> 
     )}
     </div>
   )
